@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import CountdownTimer from "./count-down-timer";
+import Image from "next/image"
 
 const BottomCTA = () => {
   return (
@@ -9,7 +10,9 @@ const BottomCTA = () => {
           <div className="bg-sports-dark rounded-3xl overflow-hidden relative">
             {/* Background Image */}
             <div className="absolute inset-0">
-              <img 
+              <Image
+                width={1260}
+                height={460}
                 src={'/1-palmis.jpg'} 
                 alt="College football player" 
                 className="w-full h-full object-cover opacity-80"

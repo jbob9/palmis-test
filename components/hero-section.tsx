@@ -1,14 +1,15 @@
 import { MapPinned } from "lucide-react";
 import CountdownTimer from "./count-down-timer";
-import Header from "./header";
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
     <section className="relative  bg-sports-dark overflow-hidden">
       {/* Background Image */}
-      {/* <Header /> */}
       <div className="absolute inset-0">
-        <img
+        <Image
+          width={1320}
+          height={600}
           src={"/bridgerton-1.jpg"}
           alt="Football player"
           className="w-full h-full object-cover"

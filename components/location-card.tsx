@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
+import Image from 'next/image'
 
 const LocationCard = () => {
   return (
@@ -32,7 +33,9 @@ const LocationCard = () => {
             </div>
           </div>
           <div className="rounded-xl overflow-hidden w-96 h-96">
-            <img
+            <Image
+              width={385}
+              height={385}
               src={"/1-palmis.jpg"}
               alt="Stadium crowd"
               className="w-full h-full object-cover"

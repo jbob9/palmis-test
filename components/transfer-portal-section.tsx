@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image"
 
 const TransferPortalSection = () => {
   return (
@@ -35,7 +36,9 @@ const TransferPortalSection = () => {
 
           {/* Right Card - Football Player Image */}
           <div className="bg-navy-dark rounded-2xl overflow-hidden">
-            <img
+            <Image
+              width={560}
+              height={400}
               src={"/2-palmis.jpg"}
               alt="Football player in red uniform"
               className="w-full h-full object-cover min-h-[400px]"
