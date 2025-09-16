@@ -29,12 +29,26 @@ const athletes = [
     image: "/placeholder.svg",
     featured: true,
   },
+   {
+    name: "Jordan Collins",
+    sport: "Basketball",
+    yearsInLeague: 3,
+    image: "/placeholder.svg",
+    featured: true,
+  },
+   {
+    name: "Jordan Collins",
+    sport: "Basketball",
+    yearsInLeague: 3,
+    image: "/placeholder.svg",
+    featured: true,
+  },
 ];
 
 const FeaturedPackages = () => {
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-3">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-black text-sports-dark mb-6">
             FEATURED ATHLETES
@@ -46,7 +60,7 @@ const FeaturedPackages = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="flex items-center overflow-x-scroll gap-4">
           {athletes.map((athlete, index) => (
             <PackageCard
               key={index}

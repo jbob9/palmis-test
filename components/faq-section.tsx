@@ -40,7 +40,7 @@ const FAQSection = () => {
               <Button className="rounded-full w-fit">
                 Contact Us
                 <div className="ml-2 w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-navy-dark text-xs">→</span>
+                  <span className="text-[hsl(220,30%,12%)] text-xs">→</span>
                 </div>
               </Button>
             </div>

@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
 
 const TransferPortalSection = () => {
   return (
-    <div className="py-16 bg-foreground">
+    <div className="py-16 bg-[hsl(220,30%,12%)]">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Left Card - Call to Action */}
@@ -24,20 +23,12 @@ const TransferPortalSection = () => {
             </p>
 
             <div className="flex items-center gap-4">
-              <Button variant="outline" className="rounded-full">
+              <Button variant="secondary" className="rounded-full">
                 Sign Up
               </Button>
 
-              <Button variant="outline" className="rounded-full">
+              <Button variant="secondary" className="rounded-full">
                 Live Stream
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-white/10"
-              >
-                <Play className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -45,7 +36,7 @@ const TransferPortalSection = () => {
           {/* Right Card - Football Player Image */}
           <div className="bg-navy-dark rounded-2xl overflow-hidden">
             <img
-              src={"/placeholder.svg"}
+              src={"/2-palmis.jpg"}
               alt="Football player in red uniform"
               className="w-full h-full object-cover min-h-[400px]"
             />

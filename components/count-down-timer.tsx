@@ -9,7 +9,7 @@ interface CountdownTimerProps {
 }
 
 const CountdownTimer = ({ 
-  targetDate = new Date('2025-01-05T00:00:00'), 
+  targetDate = new Date('2025-09-30T00:00:00'), 
   className = "",
   variant = 'hero'
 }: CountdownTimerProps) => {

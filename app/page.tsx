@@ -12,7 +12,7 @@ import TransferPortalSection from "@/components/transfer-portal-section";
 export default function Home() {
   return (
      <div className="min-h-screen overflow-hidden">
-      <Header />
+      {/* <Header /> */}
       <main>
         <HeroSection />
         <FeaturedPackages />

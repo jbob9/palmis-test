@@ -3,7 +3,7 @@ import { Home, ArrowRight } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="bg-sports-dark text-white py-4 px-6">
+    <header className="bg-sports-dark py-4 px-6 absolute w-full top-0 z-20">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-2">

@@ -1,6 +1,6 @@
 const AboutSection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 rounded-t-4xl border-t-2">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -12,8 +12,8 @@ const AboutSection = () => {
             
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-sports-dark mb-4 leading-tight">
-                  ATHLETE SHOWCASE IS THE PREMIER EVENT FOR TOP TRANSFER PORTAL PROSPECTS, DIRECTLY CONNECTING ELITE PLAYERS TO GREATER NIL EARNING OPPORTUNITIES.
+                <h3 className="text-3xl font-bold text-sports-dark mb-4 leading-tight">
+                  ATHLETE SHOWCASE IS THE PREMIER EVENT FOR TOP TRANSFER PORTAL PROSPECTS, DIRECTS TO GREATER NIL EARNING OPPORTUNITIES.
                 </h3>
               </div>
               

@@ -16,7 +16,7 @@ const PackageCard = ({
   featured = false,
 }: AthleteCardProps) => {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-sports-card text-white group hover:scale-105 transition-transform duration-300">
+    <div className="relative overflow-hidden rounded-2xl bg-sports-card text-white group hover:scale-105 transition-transform duration-300 min-w-64">
       {featured && (
         <div className="absolute top-4 right-4 z-10">
           <Badge className="bg-lime-400 text-black font-medium">
@@ -25,7 +25,7 @@ const PackageCard = ({
         </div>
       )}
 
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-80 overflow-hidden">
         <img
           src={image}
           alt={name}

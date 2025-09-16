@@ -14,7 +14,7 @@ const Footer = () => {
               NIL Earning Potential
             </h3>
 
-            <div className="bg-white text-navy-dark rounded-xl p-6 mb-8 max-w-sm">
+            <div className="bg-white text-[hsl(220,30%,12%)] rounded-xl p-6 mb-8 max-w-sm">
               <h4 className="font-bold mb-2">Become a partner</h4>
               <p className="text-sm mb-4">
                 Interested in sponsoring or
@@ -27,7 +27,7 @@ const Footer = () => {
               <Button className="rounded-full w-fit">
                 Contact Us
                 <div className="ml-2 w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-navy-dark text-xs">→</span>
+                  <span className="text-[hsl(220,30%,12%)] text-xs">→</span>
                 </div>
               </Button>
             </div>
@@ -53,20 +53,12 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full text-[hsl(220,30%,12%)]">
                 Sign Up
               </Button>
 
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full text-[hsl(220,30%,12%)]">
                 Live Stream
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-white/10"
-              >
-                <div className="w-6 h-6 bg-white rounded-full" />
               </Button>
             </div>
           </div>
