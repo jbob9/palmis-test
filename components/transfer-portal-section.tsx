@@ -19,7 +19,7 @@ const TransferPortalSection = () => {
 
             <p className="text-gray-300 mb-8 text-sm leading-relaxed">
               Join the list of college sports fans who are rooting for their
-              team to land the nation's best prospects.
+              team to land the nation&quot;s best prospects.
             </p>
 
             <div className="flex items-center gap-4">

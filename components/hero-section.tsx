@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section className="relative  bg-sports-dark overflow-hidden">
       {/* Background Image */}
-      <Header />
+      {/* <Header /> */}
       <div className="absolute inset-0">
         <img
           src={"/bridgerton-1.jpg"}
