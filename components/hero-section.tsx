@@ -1,6 +1,7 @@
-import { MapPinned } from "lucide-react";
+import { ArrowRight, MapPin, MapPinned, TicketIcon } from "lucide-react";
 import CountdownTimer from "./count-down-timer";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const HeroSection = () => {
   return (
@@ -34,22 +35,34 @@ const HeroSection = () => {
             Meet some of the top athletes embracing the Transfer Portal
           </p> */}
         </div>
-        <div className="flex items-center justify-between mt-6">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-sm">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-6 gap-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-xl">
+           <div className="flex items-center space-x-1 mb-1.5">
+              {/* <span className="text-white font-medium text-lg">
+                January 5th, 2025
+              </span> */}
+              <MapPin className="text-white size-4"/>
+              <span className="text-white/80 font-semibold">
+                Dragon Stadium in Southlake Texas
+              </span>
+            </div>
             <CountdownTimer className="" />
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-sm flex items-center space-x-2">
-            <div className="flex items-center space-x-3 bg-lime-400 px-4 py-4 rounded-2xl">
-              <MapPinned className="w-5 h-5 text-[hsl(220,30%,12%)]" />
-            </div>
-            <div className="flex flex-col">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 max-w-sm flex items-center space-x-2">
+            <Button className="bg-lime-400 rounded-2xl p-8" size="lg">
+              <TicketIcon className="size-6 text-[hsl(220,30%,12%)]" />
+              <span className="text-[hsl(220,30%,12%)]">Buy Ticket</span>
+
+              <ArrowRight className="text-[hsl(220,30%,12%)] ml-3"/>
+            </Button>
+            {/* <div className="flex flex-col">
               <span className="text-white font-medium text-lg">
                 January 5th, 2025
               </span>
               <span className="text-white/80">
                 Dragon Stadium in Southlake Texas
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
