@@ -297,7 +297,7 @@ export default function StreamPage() {
               <Alert className="mb-8">
                 <Bell className="h-4 w-4" />
                 <AlertDescription>
-                  La diffusion en direct débutera automatiquement au début de l'événement. Ajoutez cette page à vos favoris et revenez le 30 septembre à 19h00 (heure centrale).
+                  La diffusion en direct débutera automatiquement au début de l&apos;événement. Ajoutez cette page à vos favoris et revenez le 30 septembre à 19h00 (heure centrale).
                 </AlertDescription>
               </Alert>
 
@@ -335,7 +335,7 @@ export default function StreamPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl font-[var(--font-playfair-display)]">
-                    À quoi s'attendre de notre diffusion en direct
+                    À quoi s&apos;attendre de notre diffusion en direct
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">

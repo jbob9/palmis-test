@@ -72,7 +72,7 @@ const FAQSection = () => {
                   {openItems.includes(index) && (
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <p className="text-gray-600 text-sm">
-                        C'est ici que se trouve la réponse à &quot;{question}
+                        C&apos;est ici que se trouve la réponse à &quot;{question}
                         &quot; apparaîtrat avec des informations détaillées pour
                         les utilisateurs.
                       </p>

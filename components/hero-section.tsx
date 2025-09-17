@@ -1,9 +1,9 @@
-import { ArrowRight, MapPin, MapPinned, TicketIcon } from "lucide-react";
-import CountdownTimer from "./count-down-timer";
-import Image from "next/image";
-import { Button, buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { ArrowRight, MapPin, TicketIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import CountdownTimer from "./count-down-timer";
+import { buttonVariants } from "./ui/button";
 
 const HeroSection = () => {
   return (

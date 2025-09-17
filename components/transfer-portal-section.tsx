@@ -13,7 +13,7 @@ const TransferPortalSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold uppercase leading-tight mb-6">
               VOULEZ-VOUS
               <br />
-              REGARDEZ L'ÉVÉNEMENT
+              REGARDEZ L&apos;ÉVÉNEMENT
               <br />
               DANS VOTRE MAISON
               <br />

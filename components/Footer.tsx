@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Left Column */}
           <div>
             <h3 className="text-2xl font-bold mb-6">
-              Maximiser le festival d'été
+              Maximiser le festival d&apos;été
               <br />
               Potentiel de gain
             </h3>
@@ -23,7 +23,7 @@ const Footer = () => {
                 <br />
                 en partenariat avec Spectacle Bridgerton?
                 <br />
-                Contactez-nous aujourd'hui!
+                Contactez-nous aujourd&apos;hui!
               </p>
 
               <a href="mailto:palmismagazine@gmail.com" className={cn(buttonVariants(), "rounded-full w-fit")}>

@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 interface AthleteCardProps {
   name: string;
@@ -19,14 +20,14 @@ const PackageCard = ({
     <div className="relative overflow-hidden rounded-2xl bg-sports-card text-white group hover:scale-105 transition-transform duration-300 min-w-64">
       {featured && (
         <div className="absolute top-4 right-4 z-10">
-          <Badge className="bg-lime-400 text-black font-medium">
-            {sport}
-          </Badge>
+          <Badge className="bg-lime-400 text-black font-medium">{sport}</Badge>
         </div>
       )}
 
       <div className="relative h-80 overflow-hidden">
-        <img
+        <Image
+          width={256}
+          height={320}
           src={image}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
