@@ -161,260 +161,247 @@ export default function TicketsPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="pt-16">
-        {/* Header */}
-        <section className="py-12 bg-primary text-primary-foreground">
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4 font-[var(--font-playfair-display)]">
-              Reserve Your Place at Le Bal Créole
-            </h1>
-            <p className="text-lg opacity-90">
-              Choose your experience level and secure your tickets to this
-              extraordinary cultural celebration
-            </p>
-          </div>
-        </section>
+    <div>
+      {/* Header */}
+      <section className="py-12 bg-primary text-primary-foreground">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 font-[var(--font-playfair-display)]">
+            Reserve Your Place at Le Bal Créole
+          </h1>
+          <p className="text-lg opacity-90">
+            Choose your experience level and secure your tickets to this
+            extraordinary cultural celebration
+          </p>
+        </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Ticket Selection */}
-            <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold mb-6">Select Your Tickets</h2>
-              <div className="space-y-6">
-                {ticketTypes.map((ticket) => {
-                  const Icon = ticket.icon;
-                  const quantity = selectedTickets[ticket.id] || 0;
-                  const isAvailable = ticket.available > 0;
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Ticket Selection */}
+          <div className="lg:col-span-2">
+            <h2 className="text-2xl font-bold mb-6">Select Your Tickets</h2>
+            <div className="space-y-6">
+              {ticketTypes.map((ticket) => {
+                const Icon = ticket.icon;
+                const quantity = selectedTickets[ticket.id] || 0;
+                const isAvailable = ticket.available > 0;
 
-                  return (
-                    <Card
-                      key={ticket.id}
-                      className={`${!isAvailable ? "opacity-50" : ""}`}
-                    >
-                      <CardHeader>
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                              <Icon className="w-6 h-6 text-primary" />
-                            </div>
-                            <div>
-                              <CardTitle className="text-xl">
-                                {ticket.name}
-                              </CardTitle>
-                              <CardDescription className="text-base">
-                                {ticket.description}
-                              </CardDescription>
-                            </div>
+                return (
+                  <Card
+                    key={ticket.id}
+                    className={`${!isAvailable ? "opacity-50" : ""}`}
+                  >
+                    <CardHeader>
+                      <div className="flex items-start flex-col md:flex-row justify-between gap-3">
+                        <div className="flex items-cente gap-3">
+                          <div className="w-12 h-12 min-w-12 bg-primary/10 rounded-full flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-primary" />
                           </div>
-                          <div className="text-right">
-                            <div className="text-2xl font-bold text-primary">
-                              ${ticket.price}
-                            </div>
-                            <Badge
-                              variant={
-                                isAvailable ? "secondary" : "destructive"
-                              }
-                              className="text-xs"
+                          <div>
+                            <CardTitle className="text-xl">
+                              {ticket.name}
+                            </CardTitle>
+                            <CardDescription className="text-base">
+                              {ticket.description}
+                            </CardDescription>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xl font-bold text-primary">
+                            {ticket.price} HTG
+                          </div>
+                          <Badge
+                            variant={isAvailable ? "secondary" : "destructive"}
+                            className="text-xs"
+                          >
+                            {isAvailable
+                              ? `${ticket.available} available`
+                              : "Sold Out"}
+                          </Badge>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="mb-4">
+                        <h4 className="font-semibold mb-2">Includes:</h4>
+                        <ul className="space-y-1">
+                          {ticket.features.map((feature, index) => (
+                            <li
+                              key={index}
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
                             >
-                              {isAvailable
-                                ? `${ticket.available} available`
-                                : "Sold Out"}
-                            </Badge>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="mb-4">
-                          <h4 className="font-semibold mb-2">Includes:</h4>
-                          <ul className="space-y-1">
-                            {ticket.features.map((feature, index) => (
-                              <li
-                                key={index}
-                                className="flex items-center gap-2 text-sm text-muted-foreground"
-                              >
-                                <Check className="w-4 h-4 text-primary" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                              <Check className="w-4 h-4 text-primary" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                        {isAvailable && (
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() =>
-                                  updateTicketQuantity(ticket.id, -1)
-                                }
-                                disabled={quantity === 0}
-                              >
-                                <Minus className="w-4 h-4" />
-                              </Button>
-                              <span className="w-8 text-center font-semibold">
-                                {quantity}
-                              </span>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() =>
-                                  updateTicketQuantity(ticket.id, 1)
-                                }
-                                disabled={quantity >= ticket.maxQuantity}
-                              >
-                                <Plus className="w-4 h-4" />
-                              </Button>
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                              Max {ticket.maxQuantity} per order
-                            </div>
+                      {isAvailable && (
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() =>
+                                updateTicketQuantity(ticket.id, -1)
+                              }
+                              disabled={quantity === 0}
+                            >
+                              <Minus className="w-4 h-4" />
+                            </Button>
+                            <span className="w-8 text-center font-semibold">
+                              {quantity}
+                            </span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => updateTicketQuantity(ticket.id, 1)}
+                              disabled={quantity >= ticket.maxQuantity}
+                            >
+                              <Plus className="w-4 h-4" />
+                            </Button>
                           </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
+                          <div className="text-sm text-muted-foreground">
+                            Max {ticket.maxQuantity} per order
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
+          </div>
 
-            {/* Order Summary & Customer Info */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
-                {/* Order Summary */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Order Summary</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {getTotalTickets() === 0 ? (
-                      <p className="text-muted-foreground text-center py-4">
-                        No tickets selected
-                      </p>
-                    ) : (
-                      <div className="space-y-3">
-                        {Object.entries(selectedTickets)
-                          .filter(([, quantity]) => quantity > 0)
-                          .map(([ticketId, quantity]) => {
-                            const ticket = ticketTypes.find(
-                              (t) => t.id === ticketId
-                            );
-                            if (!ticket) return null;
+          {/* Order Summary & Customer Info */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              {/* Order Summary */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Order Summary</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {getTotalTickets() === 0 ? (
+                    <p className="text-muted-foreground text-center py-4">
+                      No tickets selected
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      {Object.entries(selectedTickets)
+                        .filter(([, quantity]) => quantity > 0)
+                        .map(([ticketId, quantity]) => {
+                          const ticket = ticketTypes.find(
+                            (t) => t.id === ticketId
+                          );
+                          if (!ticket) return null;
 
-                            return (
-                              <div
-                                key={ticketId}
-                                className="flex justify-between"
-                              >
-                                <div>
-                                  <div className="font-medium">
-                                    {ticket.name}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground">
-                                    Qty: {quantity}
-                                  </div>
-                                </div>
-                                <div className="font-semibold">
-                                  ${ticket.price * quantity}
+                          return (
+                            <div
+                              key={ticketId}
+                              className="flex justify-between"
+                            >
+                              <div>
+                                <div className="font-medium">{ticket.name}</div>
+                                <div className="text-sm text-muted-foreground">
+                                  Qty: {quantity}
                                 </div>
                               </div>
-                            );
-                          })}
-                        <Separator />
-                        <div className="flex justify-between text-lg font-bold">
-                          <span>Total</span>
-                          <span className="text-primary">
-                            ${getTotalPrice()}
-                          </span>
-                        </div>
+                              <div className="font-semibold">
+                                ${ticket.price * quantity}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      <Separator />
+                      <div className="flex justify-between text-lg font-bold">
+                        <span>Total</span>
+                        <span className="text-primary">${getTotalPrice()}</span>
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
 
-                {/* Customer Information */}
-                {getTotalTickets() > 0 && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Customer Information</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="firstName">First Name *</Label>
-                          <Input
-                            id="firstName"
-                            value={customerInfo.firstName}
-                            onChange={(e) =>
-                              setCustomerInfo((prev) => ({
-                                ...prev,
-                                firstName: e.target.value,
-                              }))
-                            }
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="lastName">Last Name *</Label>
-                          <Input
-                            id="lastName"
-                            value={customerInfo.lastName}
-                            onChange={(e) =>
-                              setCustomerInfo((prev) => ({
-                                ...prev,
-                                lastName: e.target.value,
-                              }))
-                            }
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email Address *</Label>
+              {/* Customer Information */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Customer Information</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName">First Name *</Label>
                         <Input
-                          id="email"
-                          type="email"
-                          value={customerInfo.email}
+                          id="firstName"
+                          value={customerInfo.firstName}
                           onChange={(e) =>
                             setCustomerInfo((prev) => ({
                               ...prev,
-                              email: e.target.value,
+                              firstName: e.target.value,
                             }))
                           }
                           required
                         />
                       </div>
-                      <div>
-                        <Label htmlFor="phone">Phone Number</Label>
+                      <div className="space-y-2">
+                        <Label htmlFor="lastName">Last Name *</Label>
                         <Input
-                          id="phone"
-                          type="tel"
-                          value={customerInfo.phone}
+                          id="lastName"
+                          value={customerInfo.lastName}
                           onChange={(e) =>
                             setCustomerInfo((prev) => ({
                               ...prev,
-                              phone: e.target.value,
+                              lastName: e.target.value,
                             }))
                           }
+                          required
                         />
                       </div>
-                    </CardContent>
-                  </Card>
-                )}
-
-                {/* Purchase Button */}
-                {getTotalTickets() > 0 && (
-                  <Button
-                    onClick={handlePurchase}
-                    size="lg"
-                    className="w-full text-lg py-6"
-                  >
-                    <CreditCard className="w-5 h-5 mr-2" />
-                    Complete Purchase - ${getTotalPrice()}
-                  </Button>
-                )}
-              </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email Address *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={customerInfo.email}
+                        onChange={(e) =>
+                          setCustomerInfo((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={customerInfo.phone}
+                        onChange={(e) =>
+                          setCustomerInfo((prev) => ({
+                            ...prev,
+                            phone: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              {/* Purchase Button */}
+             
+                <Button
+                  onClick={handlePurchase}
+                  size="lg"
+                  className="w-full text-lg py-6"
+                  disabled={getTotalTickets() <= 0}
+                >
+                  <CreditCard className="w-5 h-5 mr-2" />
+                  Complete Purchase - ${getTotalPrice()}
+                </Button>
             </div>
           </div>
         </div>

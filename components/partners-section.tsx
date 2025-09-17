@@ -1,13 +1,13 @@
 const PartnersSection = () => {
   const partners = [
-    "exos", "Omnia", "exos", "exos", "exos", "exos", "exos",
+    "Palmis magazine", "Jojo Restaurant", "Expo 17", "Barbancourt", "Avyga", "exos",
   ];
 
   return (
     <div className="py-16 bg-gray-light">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12 uppercase tracking-wider text-navy-dark">
-          OUR PARTNERS
+          NOS PARTENAIRES
         </h2>
         
         <div className="flex gap-8 items-center justify-center max-w-sm flex-wrap mx-auto">

@@ -1,17 +1,29 @@
+'use client'
+
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false)
   return (
     <header className="flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-3">
       <nav className="relative max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto">
         <div className="lg:col-span-3 flex items-center">
           <Link
             href="/"
-            className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80"
+            className="flex-none text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80 rounded-full"
             aria-label="Palmis Magazine"
           >
-            Palmis
+            <Image
+            src="/palmis-logo.jpg"
+            width={50}
+            height={50}
+            className="object-cover rounded-full"
+            alt="Palmis logo"
+            />
           </Link>
 
           <div className="ms-1 sm:ms-2"></div>
@@ -37,6 +49,7 @@ const Navbar = () => {
               aria-controls="hs-pro-hcail"
               aria-label="Toggle navigation"
               data-hs-collapse="#hs-pro-hcail"
+              onClick={() => setOpen(o => !o)}
             >
               <svg
                 className="hs-collapse-open:hidden shrink-0 size-4"
@@ -74,34 +87,37 @@ const Navbar = () => {
         </div>
         <div
           id="hs-pro-hcail"
-          className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6"
+          className={cn('hs-collapse overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-6', {
+            'hidden': !open,
+            'block mb-4 rounded-b-xl': open
+          })}
           aria-labelledby="hs-pro-hcail-collapse"
         >
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
             <div>
               <a
                 className="relative inline-block text-black focus:outline-hidden before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-lime-400 dark:text-white"
-                href="#"
+                href="#about"
                 aria-current="page"
               >
-                Home
+                About
               </a>
             </div>
             <div>
               <a
                 className="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-                href="#"
+                href="#location"
               >
-                Listings
+                Location
               </a>
             </div>
             <div>
-              <a
+              <Link
                 className="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-                href="#"
+                href="/tickets"
               >
-                Product
-              </a>
+                Tickets
+              </Link>
             </div>
             <div>
               <a

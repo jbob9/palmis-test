@@ -1,7 +1,9 @@
 import { ArrowRight, MapPin, MapPinned, TicketIcon } from "lucide-react";
 import CountdownTimer from "./count-down-timer";
 import Image from "next/image";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -25,10 +27,10 @@ const HeroSection = () => {
             Transfer Portal
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black text-white mb-9 leading-tight">
-            ATHLETE
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-9 leading-tight uppercase">
+            Spectacle 
             <br />
-            SHOWCASE
+            Bridgerton
           </h1>
 
           {/* <p className="text-white/80 text-lg mb-8 max-w-md">
@@ -36,25 +38,25 @@ const HeroSection = () => {
           </p> */}
         </div>
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-6 gap-3">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-xl">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-3 md:p-6 max-w-xl">
            <div className="flex items-center space-x-1 mb-1.5">
               {/* <span className="text-white font-medium text-lg">
                 January 5th, 2025
               </span> */}
               <MapPin className="text-white size-4"/>
               <span className="text-white/80 font-semibold">
-                Dragon Stadium in Southlake Texas
+               Rue de Panaméricaine, Pétionville 6141
               </span>
             </div>
             <CountdownTimer className="" />
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 max-w-sm flex items-center space-x-2">
-            <Button className="bg-lime-400 rounded-2xl p-8" size="lg">
+            <Link href={'/tickets'} className={cn(buttonVariants({ size: 'lg'}), 'bg-lime-400 rounded-2xl p-8 hover:bg-lime-500')} >
               <TicketIcon className="size-6 text-[hsl(220,30%,12%)]" />
               <span className="text-[hsl(220,30%,12%)]">Buy Ticket</span>
 
               <ArrowRight className="text-[hsl(220,30%,12%)] ml-3"/>
-            </Button>
+            </Link>
             {/* <div className="flex flex-col">
               <span className="text-white font-medium text-lg">
                 January 5th, 2025

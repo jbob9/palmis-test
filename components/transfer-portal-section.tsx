@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image"
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 const TransferPortalSection = () => {
   return (
@@ -7,30 +9,43 @@ const TransferPortalSection = () => {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Left Card - Call to Action */}
-          <div className="bg-navy-dark rounded-2xl p-8 text-white flex flex-col justify-center">
+          <div className="bg-navy-dark rounded-2xl p-4 mdLp-8 text-white flex flex-col justify-center">
             <h2 className="text-3xl md:text-4xl font-bold uppercase leading-tight mb-6">
-              DO YOU WANT TO
+              VOULEZ-VOUS
               <br />
-              WATCH TOP PROSPECTS
+              REGARDEZ L'ÉVÉNEMENT
               <br />
-              IN THE TRANSFER
+              DANS VOTRE MAISON
               <br />
-              PORTAL?
+              EN DIRECT?
             </h2>
 
             <p className="text-gray-300 mb-8 text-sm leading-relaxed">
-              Join the list of college sports fans who are rooting for their
-              team to land the nation&quot;s best prospects.
+              Rejoignez la liste des étudiants et des supporters universitaires
+              qui encouragent leur équipe à recruter les meilleurs espoirs du
+              pays.
             </p>
 
             <div className="flex items-center gap-4">
-              <Button variant="secondary" className="rounded-full">
-                Sign Up
-              </Button>
+              <Link
+                href="/tickets"
+                className={cn(
+                  buttonVariants({ variant: "secondary" }),
+                  "rounded-full"
+                )}
+              >
+                Acheter des billets
+              </Link>
 
-              <Button variant="secondary" className="rounded-full">
+              <Link
+                href="/stream"
+                className={cn(
+                  buttonVariants({ variant: "secondary" }),
+                  "rounded-full"
+                )}
+              >
                 Live Stream
-              </Button>
+              </Link>
             </div>
           </div>
 

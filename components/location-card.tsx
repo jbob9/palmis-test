@@ -1,46 +1,83 @@
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Calendar, MapPin } from "lucide-react";
-import Image from 'next/image'
+import Image from "next/image";
 
 const LocationCard = () => {
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto" id="about">
       <div className="bg-[hsl(220,30%,12%)] rounded-2xl p-6 text-white ">
-        <div className="flex justify-between mb-4">
-          <div className="flex flex-col justify-between">
-            <div>
+        <div className="flex flex-col md:flex-row justify-between mb-4">
+          <div className="flex flex-col justify-between gap-4 mb-4 md:mb-0">
+            <div >
               {" "}
               <h2 className="text-3xl font-bold uppercase tracking-wider mb-1">
                 LOCATION
               </h2>
             </div>
-            <div className="flex flex-col items-cent justify-center gap-4 ">
+            <div className="flex flex-col items-cent justify-center gap-4">
               <div className="size-12 bg-lime-500 rounded-xl flex items-center justify-center">
                 <Calendar className="size-6 text-[hsl(220,30%,12%)]" />
               </div>
               <div>
-                <p className="text-2xl font-semibold">January 5th, 2025</p>
+                <p className="text-2xl font-semibold">September 30th, 2025</p>
                 <p className="text-sm text-gray-300">
-                  Dragon Stadium in Southlake Texas
+                  Rue de Panaméricaine & Nerette, Pétionville 6141
                 </p>
               </div>
             </div>
             <div className="space-x-1">
               <Button className="rounded-full w-min" variant={"secondary"}>
                 <MapPin />
-                Open Map
+                Ouvrir la carte
               </Button>
             </div>
           </div>
-          <div className="rounded-xl overflow-hidden w-96 h-96">
-            <Image
-              width={385}
-              height={385}
-              src={"/1-palmis.jpg"}
-              alt="Stadium crowd"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Carousel>
+            <CarouselContent>
+              <CarouselItem>
+                <div className="rounded-xl overflow-hidden w-full md:w-96 h-96">
+                  <Image
+                    width={385}
+                    height={385}
+                    src={"/1-palmis.jpg"}
+                    alt="Stadium crowd"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="rounded-xl overflow-hidden w-full md:w-96 h-96">
+                  <Image
+                    width={385}
+                    height={385}
+                    src={"/bridgerton.jpg"}
+                    alt="Stadium crowd"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="rounded-xl overflow-hidden w-full md:w-96 h-96">
+                  <Image
+                    width={385}
+                    height={385}
+                    src={"/bridgerton-2.jpg"}
+                    alt="Stadium crowd"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="-left-6 text-black" />
+            <CarouselNext className="-right-6 text-black"/>
+          </Carousel>
         </div>
       </div>
     </div>

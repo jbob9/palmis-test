@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -8,11 +9,10 @@ const FAQSection = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const faqItems = [
-    "What is NIL and how does it affect student athletes?",
-    "Who can participate in this event?",
-    "What opportunities does NIL offer student-athletes?",
-    "Will there be support for creating sponsorship deals?",
-    "How does NIL impact students' athletic careers?",
+    "Qu’est-ce que le NIL et comment affecte-t-il les étudiants?",
+    "Qui peut participer à cet événement?",
+    "Quelles opportunités NIL offre aux étudiants?",
+    "Y aura-t-il un soutien pour la création d’accords de parrainage?",
   ];
 
   const toggleItem = (index: number) => {
@@ -31,16 +31,19 @@ const FAQSection = () => {
               <h2 className="text-4xl font-bold mb-8">FAQ</h2>
 
               <div className="mb-8">
-                <p className="text-sm font-medium mb-1">Do you have another</p>
+                <p className="text-sm font-medium mb-1">En as-tu un autre</p>
                 <p className="text-sm font-medium">question?</p>
               </div>
 
-              <Button className="rounded-full w-fit">
-                Contact Us
+              <a
+                href="mailto:palmismagazine@gmail.com"
+                className={cn(buttonVariants(), "rounded-full w-fit")}
+              >
+                Contacter-nous
                 <div className="ml-2 w-6 h-6 bg-white rounded-full flex items-center justify-center">
                   <span className="text-[hsl(220,30%,12%)] text-xs">→</span>
                 </div>
-              </Button>
+              </a>
             </div>
           </div>
 
@@ -69,8 +72,9 @@ const FAQSection = () => {
                   {openItems.includes(index) && (
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <p className="text-gray-600 text-sm">
-                        This is where the answer to &quot;{question}&quot; would appear
-                        with detailed information for users.
+                        C'est ici que se trouve la réponse à &quot;{question}
+                        &quot; apparaîtrat avec des informations détaillées pour
+                        les utilisateurs.
                       </p>
                     </div>
                   )}

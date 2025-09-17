@@ -49,7 +49,7 @@ const CountdownTimer = ({
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold">{String(timeLeft.hours + timeLeft.minutes / 60).slice(0, 2)}</div>
-            <div className="text-sm font-medium opacity-70">Speakers</div>
+            <div className="text-sm font-medium opacity-70">Spectacles</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>

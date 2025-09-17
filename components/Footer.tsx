@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -9,27 +11,27 @@ const Footer = () => {
           {/* Left Column */}
           <div>
             <h3 className="text-2xl font-bold mb-6">
-              Maximizing College Athlete
+              Maximiser le festival d'été
               <br />
-              NIL Earning Potential
+              Potentiel de gain
             </h3>
 
             <div className="bg-white text-[hsl(220,30%,12%)] rounded-xl p-6 mb-8 max-w-sm">
-              <h4 className="font-bold mb-2">Become a partner</h4>
+              <h4 className="font-bold mb-2">Devenez partenaire</h4>
               <p className="text-sm mb-4">
-                Interested in sponsoring or
+                Intéressé par le parrainage ou
                 <br />
-                partnering with Athletic Showcase?
+                en partenariat avec Spectacle Bridgerton?
                 <br />
-                Get in touch today!
+                Contactez-nous aujourd'hui!
               </p>
 
-              <Button className="rounded-full w-fit">
+              <a href="mailto:palmismagazine@gmail.com" className={cn(buttonVariants(), "rounded-full w-fit")}>
                 Contact Us
                 <div className="ml-2 w-6 h-6 bg-white rounded-full flex items-center justify-center">
                   <span className="text-[hsl(220,30%,12%)] text-xs">→</span>
                 </div>
-              </Button>
+              </a>
             </div>
           </div>
 
@@ -37,29 +39,29 @@ const Footer = () => {
           <div className="space-y-8">
             <div>
               <p className="text-sm text-gray-400 mb-1">For Help</p>
-              <p className="text-lg">info@athleteshowcase.com</p>
+              <p className="text-lg">palmismagazine@gmail.com</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-400 mb-1">For Media</p>
-              <p className="text-lg">press@athleteshowcase.com</p>
+              <p className="text-lg">palmismagazine@gmail.com</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-400 mb-1">January 5th, 2025</p>
+              <p className="text-sm text-gray-400 mb-1">September 30th, 2025</p>
               <p className="text-sm text-gray-300">
-                498 Gandy Street, Auburn, New York
+                Rue de Panaméricaine & Nerette, Pétionville 6141
               </p>
             </div>
 
             <div className="flex items-center gap-4">
-              <Button variant="outline" className="rounded-full text-[hsl(220,30%,12%)]">
-                Sign Up
-              </Button>
+              <Link href={'/tickets'} className={cn(buttonVariants({ variant: 'outline'}), "rounded-full text-[hsl(220,30%,12%)]")}>
+                Buy tickets
+              </Link>
 
-              <Button variant="outline" className="rounded-full text-[hsl(220,30%,12%)]">
+              <Link href="/stream" className={cn(buttonVariants({ variant: 'outline'}), "rounded-full text-[hsl(220,30%,12%)]")}>
                 Live Stream
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -68,13 +70,13 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-              <h2 className="text-3xl font-bold">ATHLETE SHOWCASE</h2>
+              <h2 className="text-3xl font-bold uppercase">Spectacle Bridgerton</h2>
               <p className="text-sm text-gray-400 mt-2">
-                Copyright Athlete Showcase 2024
+                Copyright Palmis Magazine 2025
               </p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-col justify-center">
               <div className="flex gap-3">
                 <Button
                   variant="ghost"

@@ -46,7 +46,7 @@ export default function StreamPage() {
 
   // Check if event has started (March 15, 2025 7:00 PM)
   useEffect(() => {
-    const eventDate = new Date("2025-03-15T19:00:00");
+    const eventDate = new Date("2025-09-30T19:00:00");
 
     const checkEventStatus = () => {
       const currentTime = new Date();
@@ -86,7 +86,7 @@ export default function StreamPage() {
       isLive: eventStarted,
       viewerCount: eventStarted ? 2847 : undefined,
       description:
-        "High-quality stream with chat interaction and multiple camera angles",
+        "Flux de haute qualité avec interaction par chat et angles de caméra multiples",
       color: "text-red-600",
     },
     {
@@ -97,7 +97,7 @@ export default function StreamPage() {
       isLive: eventStarted,
       viewerCount: eventStarted ? 1923 : undefined,
       description:
-        "Interactive streaming experience with real-time audience engagement",
+        "Expérience de streaming interactive avec engagement du public en temps réel.",
       color: "text-purple-600",
     },
     {
@@ -107,7 +107,7 @@ export default function StreamPage() {
       url: "https://tiktok.com/@bridgertonlegacy/live",
       isLive: eventStarted,
       viewerCount: eventStarted ? 5621 : undefined,
-      description: "Mobile-optimized stream perfect for on-the-go viewing",
+      description: "Flux optimisé pour mobile, parfait pour une visualisation en déplacement",
       color: "text-pink-600",
     },
   ];
@@ -117,10 +117,10 @@ export default function StreamPage() {
   );
 
   return (
-    <div className="min-h-screen">
-      <div className="pt-16">
+      <div className="pb-24">
         {/* Header */}
-        <section className="py-12 bg-gradient-to-r from-primary/10 to-secondary/10">
+      {!eventStarted ? (
+          <section className="py-12 bg-gradient-to-r from-primary/10 to-secondary/10">
           <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Play className="w-8 h-8 text-primary" />
@@ -129,37 +129,35 @@ export default function StreamPage() {
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6">
-              Experience Le Bal Créole from anywhere in the world with our
-              multi-platform live streaming
+              Vivez Le Bal Créole où que vous soyez dans le monde grâce à notre diffusion en direct multiplateforme
             </p>
 
             {/* Event Status */}
-            {eventStarted ? (
-              <Badge className="text-lg px-6 py-3 bg-red-600 text-white animate-pulse">
-                🔴 LIVE NOW
-              </Badge>
-            ) : (
+            
               <div className="space-y-2">
                 <Badge variant="outline" className="text-lg px-6 py-3">
                   <Clock className="w-4 h-4 mr-2" />
                   {timeUntilEvent}
                 </Badge>
                 <p className="text-sm text-muted-foreground">
-                  Streaming begins March 15, 2025 at 7:00 PM CST
+                  Vivez Le Bal Créole où que vous soyez dans le monde grâce à notre diffusion en direct multiplateforme
                 </p>
               </div>
-            )}
+              <Button className="mt-4" onClick={() => setEventStarted(true)}>
+                🔴 Simulate Livel
+                </Button>
           </div>
         </section>
+      ): null}
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 pb-12">
           {eventStarted ? (
             /* Live Streaming Interface */
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Main Stream Player */}
               <div className="lg:col-span-3">
                 <Card className="overflow-hidden py-0">
-                  <div className="aspect-video bg-black relative">
+                  <div className="aspect-[16/12] md:aspect-video bg-black relative">
                     {/* Simulated Video Player */}
                     <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
                       <div className="text-center text-white">
@@ -299,9 +297,7 @@ export default function StreamPage() {
               <Alert className="mb-8">
                 <Bell className="h-4 w-4" />
                 <AlertDescription>
-                  The live stream will begin automatically when the event
-                  starts. Bookmark this page and return on March 15th at 7:00 PM
-                  CST.
+                  La diffusion en direct débutera automatiquement au début de l'événement. Ajoutez cette page à vos favoris et revenez le 30 septembre à 19h00 (heure centrale).
                 </AlertDescription>
               </Alert>
 
@@ -339,42 +335,37 @@ export default function StreamPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl font-[var(--font-playfair-display)]">
-                    What to Expect from Our Live Stream
+                    À quoi s'attendre de notre diffusion en direct
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="font-semibold mb-2">
-                        Multiple Camera Angles
+                        Plusieurs angles de caméra
                       </h3>
                       <p className="text-muted-foreground text-sm">
-                        Experience the ball from different perspectives with our
-                        professional camera setup capturing every magical
-                        moment.
+                        Vivez le bal sous différents angles grâce à notre caméra professionnelle qui capture chaque instant magique.
                       </p>
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">
-                        Cultural Performances
+                       Performances culturelles
                       </h3>
                       <p className="text-muted-foreground text-sm">
-                        Witness authentic Creole cultural performances and
-                        traditional Bridgerton-era entertainment.
+                        Assistez à des spectacles culturels créoles authentiques et à des divertissements traditionnels de l’époque de Bridgerton.
                       </p>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Interactive Chat</h3>
+                      <h3 className="font-semibold mb-2">Chat interactif</h3>
                       <p className="text-muted-foreground text-sm">
-                        Join the conversation with viewers worldwide and share
-                        your excitement in real-time.
+                        Rejoignez la conversation avec les téléspectateurs du monde entier et partagez votre enthousiasme en temps réel.
                       </p>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">Behind the Scenes</h3>
+                      <h3 className="font-semibold mb-2">Dans les coulisses</h3>
                       <p className="text-muted-foreground text-sm">
-                        Get exclusive glimpses of the preparation, interviews
-                        with performers, and special moments.
+                        Obtenez des aperçus exclusifs des préparatifs, des interviews avec les artistes et des moments spéciaux.
                       </p>
                     </div>
                   </div>
@@ -384,6 +375,5 @@ export default function StreamPage() {
           )}
         </div>
       </div>
-    </div>
   );
 }

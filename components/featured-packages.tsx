@@ -50,8 +50,8 @@ const FeaturedPackages = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-3">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-black text-sports-dark mb-6">
-            FEATURED ATHLETES
+          <h2 className="text-5xl font-black text-sports-dark mb-6 uppercase">
+            kits scolaires
           </h2>
           <p className="text-sports-text-muted max-w-2xl mx-auto text-lg">
             Meet some of the top athletes entering the Transfer Portal. These
@@ -78,8 +78,7 @@ const FeaturedPackages = () => {
             Powered by
           </div>
           <div className="flex items-center justify-center space-x-8">
-            <div className="text-2xl font-bold text-sports-dark">EXOS</div>
-            <div className="text-2xl font-bold text-sports-dark">OMNIA</div>
+            <div className="text-2xl font-bold text-sports-dark uppercase">Palmis Magazine</div>
           </div>
         </div>
       </div>
