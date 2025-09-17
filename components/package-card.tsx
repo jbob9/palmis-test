@@ -26,8 +26,8 @@ const PackageCard = ({
 
       <div className="relative h-80 overflow-hidden">
         <Image
-          width={256}
-          height={320}
+          width={450}
+          height={360}
           src={image}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
