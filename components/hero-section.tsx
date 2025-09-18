@@ -53,7 +53,7 @@ const HeroSection = () => {
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 max-w-sm flex items-center space-x-2">
             <Link href={'/tickets'} className={cn(buttonVariants({ size: 'lg'}), 'bg-lime-400 rounded-2xl p-8 hover:bg-lime-500')} >
               <TicketIcon className="size-6 text-[hsl(220,30%,12%)]" />
-              <span className="text-[hsl(220,30%,12%)]">Buy Ticket</span>
+              <span className="text-[hsl(220,30%,12%)]">Acheter des billets</span>
 
               <ArrowRight className="text-[hsl(220,30%,12%)] ml-3"/>
             </Link>

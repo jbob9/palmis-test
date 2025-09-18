@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,17 +11,22 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import {
   Check,
   CreditCard,
   Crown,
+  LoaderCircle,
   Minus,
   Plus,
   Sparkles,
   Users,
 } from "lucide-react";
+import type React from "react";
 import { useState } from "react";
+import { payTicket } from "./mutation.server";
+import Image from "next/image"
 
 interface TicketType {
   id: string;
@@ -39,16 +42,16 @@ interface TicketType {
 const ticketTypes: TicketType[] = [
   {
     id: "general",
-    name: "General Admission",
-    price: 150,
+    name: "Admission générale",
+    price: 100,
     description:
-      "Experience the magic of Le Bal Créole with full access to the main ballroom and festivities.",
+      "Vivez la magie du Bal Créole avec un accès complet à la salle de bal principale et aux festivités.",
     features: [
-      "Access to main ballroom",
-      "Welcome cocktail reception",
-      "Cultural performances",
-      "Dancing until midnight",
-      "Commemorative program",
+      "Accès à la salle de bal principale",
+      "Cocktail de bienvenue",
+      "Spectacles culturels",
+      "Danser jusqu'à minuit",
+      "Programme commémoratif",
     ],
     icon: Users,
     maxQuantity: 4,
@@ -56,17 +59,17 @@ const ticketTypes: TicketType[] = [
   },
   {
     id: "premium",
-    name: "Premium Experience",
-    price: 275,
+    name: "Expérience Premium",
+    price: 175,
     description:
-      "Elevated experience with VIP amenities and exclusive access to premium areas.",
+      "Une expérience haut de gamme avec des équipements VIP et un accès exclusif aux zones premium.",
     features: [
-      "All General Admission benefits",
-      "VIP cocktail hour",
-      "Premium seating area",
-      "Complimentary coat check",
-      "Professional photography session",
-      "Exclusive gift bag",
+      "Tous les avantages de l'admission générale",
+      "Cocktail VIP",
+      "Espace salon haut de gamme",
+      "Vestiaire gratuit",
+      "Scéance photo professionnelle",
+      "Sac cadeau exclusif",
     ],
     icon: Crown,
     maxQuantity: 2,
@@ -74,18 +77,18 @@ const ticketTypes: TicketType[] = [
   },
   {
     id: "royal",
-    name: "Royal Court Package",
-    price: 450,
+    name: "Forfait Cour royale",
+    price: 250,
     description:
-      "The ultimate luxury experience with exclusive access and personalized service.",
+      "L'expérience de luxe ultime avec un accès exclusif et un service personnalisé.",
     features: [
-      "All Premium Experience benefits",
-      "Private pre-event reception",
-      "Reserved table for dinner",
-      "Personal concierge service",
-      "Meet & greet with performers",
-      "Luxury transportation arrangement",
-      "Custom keepsake jewelry",
+      "Tous les avantages de l'Expérience Premium",
+      "Réception privée avant l'événement",
+      "Table réservée pour le dîner",
+      "Service de conciergerie personnel",
+      "Rencontre avec les artistes",
+      "Arrangement de transport de luxe",
+      "Bijoux souvenirs personnalisés",
     ],
     icon: Sparkles,
     maxQuantity: 2,
@@ -103,6 +106,9 @@ export default function TicketsPage() {
     email: "",
     phone: "",
   });
+  const [loading, setLoading] = useState(false);
+
+  const [paymentType, setPaymentType] = useState("moncash");
 
   const updateTicketQuantity = (ticketId: string, change: number) => {
     const currentQuantity = selectedTickets[ticketId] || 0;
@@ -136,9 +142,10 @@ export default function TicketsPage() {
     );
   };
 
-  const handlePurchase = () => {
+  const handlePurchase = async () => {
     // In a real app, this would integrate with a payment processor
     const totalTickets = getTotalTickets();
+    const price = getTotalPrice();
     if (totalTickets === 0) {
       alert("Please select at least one ticket.");
       return;
@@ -152,12 +159,21 @@ export default function TicketsPage() {
       alert("Please fill in all required customer information.");
       return;
     }
+    setLoading(true);
+    if (paymentType === "moncash") {
+      const res = await payTicket("moncash", price, totalTickets);
+      if (res?.redirectUrl) {
+        window.location.href = res.redirectUrl;
+      }
+      return;
+    }
 
-    // Simulate successful purchase and redirect to merchandise
-    alert(
-      "Purchase successful! Redirecting to our exclusive merchandise collection..."
-    );
-    window.location.href = "/merchandise?from=tickets";
+    const res = await payTicket("stripe", price, totalTickets);
+    if (res?.redirectUrl) {
+      window.location.href = res.redirectUrl;
+    }
+    setLoading(false);
+    return;
   };
 
   return (
@@ -166,11 +182,10 @@ export default function TicketsPage() {
       <section className="py-12 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4 font-[var(--font-playfair-display)]">
-            Reserve Your Place at Le Bal Créole
+            Réservez votre place au Bal Créole
           </h1>
           <p className="text-lg opacity-90">
-            Choose your experience level and secure your tickets to this
-            extraordinary cultural celebration
+            Choisissez votre niveau d&apos;expérience et réservez vos billets pour cette célébration culturelle extraordinaire.
           </p>
         </div>
       </section>
@@ -179,7 +194,7 @@ export default function TicketsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Ticket Selection */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold mb-6">Select Your Tickets</h2>
+            <h2 className="text-2xl font-bold mb-6">Sélectionnez vos billets</h2>
             <div className="space-y-6">
               {ticketTypes.map((ticket) => {
                 const Icon = ticket.icon;
@@ -309,7 +324,7 @@ export default function TicketsPage() {
                                 </div>
                               </div>
                               <div className="font-semibold">
-                                ${ticket.price * quantity}
+                                {ticket.price * quantity} HTG
                               </div>
                             </div>
                           );
@@ -317,7 +332,9 @@ export default function TicketsPage() {
                       <Separator />
                       <div className="flex justify-between text-lg font-bold">
                         <span>Total</span>
-                        <span className="text-primary">${getTotalPrice()}</span>
+                        <span className="text-primary">
+                          {getTotalPrice()} HTG
+                        </span>
                       </div>
                     </div>
                   )}
@@ -325,83 +342,112 @@ export default function TicketsPage() {
               </Card>
 
               {/* Customer Information */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Customer Information</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name *</Label>
-                        <Input
-                          id="firstName"
-                          value={customerInfo.firstName}
-                          onChange={(e) =>
-                            setCustomerInfo((prev) => ({
-                              ...prev,
-                              firstName: e.target.value,
-                            }))
-                          }
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name *</Label>
-                        <Input
-                          id="lastName"
-                          value={customerInfo.lastName}
-                          onChange={(e) =>
-                            setCustomerInfo((prev) => ({
-                              ...prev,
-                              lastName: e.target.value,
-                            }))
-                          }
-                          required
-                        />
-                      </div>
-                    </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Customer Information</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="firstName">First Name *</Label>
                       <Input
-                        id="email"
-                        type="email"
-                        value={customerInfo.email}
+                        id="firstName"
+                        value={customerInfo.firstName}
                         onChange={(e) =>
                           setCustomerInfo((prev) => ({
                             ...prev,
-                            email: e.target.value,
+                            firstName: e.target.value,
                           }))
                         }
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="lastName">Last Name *</Label>
                       <Input
-                        id="phone"
-                        type="tel"
-                        value={customerInfo.phone}
+                        id="lastName"
+                        value={customerInfo.lastName}
                         onChange={(e) =>
                           setCustomerInfo((prev) => ({
                             ...prev,
-                            phone: e.target.value,
+                            lastName: e.target.value,
                           }))
                         }
+                        required
                       />
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={customerInfo.email}
+                      onChange={(e) =>
+                        setCustomerInfo((prev) => ({
+                          ...prev,
+                          email: e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={customerInfo.phone}
+                      onChange={(e) =>
+                        setCustomerInfo((prev) => ({
+                          ...prev,
+                          phone: e.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                </CardContent>
+              </Card>
               {/* Purchase Button */}
-             
-                <Button
-                  onClick={handlePurchase}
-                  size="lg"
-                  className="w-full text-lg py-6"
-                  disabled={getTotalTickets() <= 0}
+              <div>
+                <RadioGroup
+                  defaultValue="moncash"
+                  onValueChange={(v) => setPaymentType(v)}
                 >
-                  <CreditCard className="w-5 h-5 mr-2" />
-                  Complete Purchase - ${getTotalPrice()}
-                </Button>
+                  <div className="flex items-center space-x-2 border rounded-2xl p-2">
+                    <RadioGroupItem value="moncash" id="moncash" />
+                    <Image
+                    width={56}
+                      height={36}
+                      src={"/moncash.png"}
+                      alt="Moncash logo"
+                      className="w-14 h-8 object-contain"
+                    />
+                    <Label htmlFor="moncash">Moncash</Label>
+                  </div>
+                  <div className="flex items-center space-x-2  border rounded-2xl p-2">
+                    <RadioGroupItem value="card" id="card" />
+                    <Image
+                      width={56}
+                      height={36}
+                      src={"/card.png"}
+                      alt="Moncash logo"
+                      className="w-14 h-8 object-contain"
+                    />
+                    <Label htmlFor="card">Card</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              <Button
+                onClick={handlePurchase}
+                size="lg"
+                className="w-full text-lg py-6"
+                disabled={getTotalTickets() <= 0 || loading}
+              >
+                <CreditCard className="w-5 h-5 mr-2" />
+                Complete Purchase - ${getTotalPrice()}
+                {loading ? <LoaderCircle className="h-4 w-4 animate-spin" />: null}
+              </Button>
             </div>
           </div>
         </div>

@@ -2,44 +2,50 @@ import PackageCard from "./package-card";
 
 const athletes = [
   {
-    name: "Nikola Jokić",
-    sport: "6000 HTG",
-    yearsInLeague: 9,
+    name: "Les études classiques",
+    price: 6000,
+    description:
+      "Contient des textes sources primaires en traduction (Homère, Platon, Cicéron)",
     image: "/bridgerton-1.jpg",
     featured: true,
   },
   {
-    name: "Noah Lyles",
-    sport: "4500 HTG",
-    yearsInLeague: 8,
+    name: "Les manuscrits médiévaux",
+    price: 4500,
+    description:
+      "Comprend des fac-similés de manuscrits enluminés, des guides paléographiques pour la lecture d'écritures anciennes",
     image: "/pack-1.jpg",
     featured: true,
   },
   {
-    name: "Carlin Isles",
-    sport: "3000 HTG",
-    yearsInLeague: 8,
+    name: "L'art et la littérature de la Renaissance",
+    price: 3000,
+    description:
+      "Présente des reproductions de haute qualité d'œuvres d'art de la Renaissance et des documents biographiques",
     image: "/bridgerton.jpg",
     featured: true,
   },
   {
-    name: "Jordan Collins",
-    sport: "5000 HTG",
-    yearsInLeague: 3,
+    name: "La révolution scientifique",
+    price: 5000,
+    description:
+      "Contient des extraits d'œuvres de Galilée, Newton et Copernic, des modèles interactifs de la mécanique céleste",
     image: "/pack-2.jpg",
     featured: true,
   },
-   {
-    name: "Jordan Collins",
-    sport: "7500 HTG",
-    yearsInLeague: 3,
+  {
+    name: "La philosophie des Lumières",
+    price: 7500,
+    description:
+      "Comprend des textes clés de Voltaire, Rousseau et Locke, des guides d'analyse de la théorie politique.",
     image: "/pack-3.jpg",
     featured: true,
   },
-   {
-    name: "Jordan Collins",
-    sport: "5000 HTG",
-    yearsInLeague: 3,
+  {
+    name: "La littérature et la société victoriennes",
+    price: 5000,
+    description:
+      "Présente des romans et des poèmes de l'époque, des documents d'histoire sociale sur l'industrialisation.",
     image: "/pack-4.webp",
     featured: true,
   },
@@ -47,16 +53,17 @@ const athletes = [
 
 const FeaturedPackages = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" id="kit">
       <div className="container mx-auto px-3">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-black text-sports-dark mb-6 uppercase">
+          <h2 className="text-5xl font-black text-prices-dark mb-6 uppercase">
             kits scolaires
           </h2>
-          <p className="text-sports-text-muted max-w-2xl mx-auto text-lg">
-            Meet some of the top athletes entering the Transfer Portal. These
-            players represent the future of college sports, each with the
-            talent, skill, and drive to reach the next level.
+          <p className="text-prices-text-muted max-w-2xl mx-auto text-lg">
+            Que vous soyez étudiant, éducateur ou apprenant tout au long de la
+            vie, ces six kits essentiels offrent un aperçu inégalé des idées,
+            des innovations et des individus qui ont défini la civilisation
+            occidentale.
           </p>
         </div>
 
@@ -65,20 +72,21 @@ const FeaturedPackages = () => {
             <PackageCard
               key={index}
               name={athlete.name}
-              sport={athlete.sport}
-              yearsInLeague={athlete.yearsInLeague}
+              price={athlete.price}
+              description={athlete.description}
               image={athlete.image}
-              featured={athlete.featured}
             />
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <div className="text-sm text-sports-text-muted font-medium mb-4">
+          <div className="text-sm text-prices-text-muted font-medium mb-4">
             Powered by
           </div>
           <div className="flex items-center justify-center space-x-8">
-            <div className="text-2xl font-bold text-sports-dark uppercase">Palmis Magazine</div>
+            <div className="text-2xl font-bold text-prices-dark uppercase">
+              Palmis Magazine
+            </div>
           </div>
         </div>
       </div>

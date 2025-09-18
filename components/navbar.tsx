@@ -106,9 +106,18 @@ const Navbar = () => {
             <div>
               <a
                 className="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href="#kit"
+              >
+                Lits scolaires
+              </a>
+            </div>
+            <div>
+              <a
+                className="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
                 href="#location"
               >
                 Location
+                
               </a>
             </div>
             <div>
@@ -118,14 +127,6 @@ const Navbar = () => {
               >
                 Tickets
               </Link>
-            </div>
-            <div>
-              <a
-                className="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-                href="#"
-              >
-                Checkout
-              </a>
             </div>
           </div>
         </div>
